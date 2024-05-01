@@ -17,7 +17,7 @@ pipeline {
                  sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID' 
                  sh 'az acr login --name dvopsimages'
                  sh "cd ${WORKSPACE}/src/vote; docker build -t vote ."
-                 sh "docker tag result dvopsimages.azurecr.io/app/vote:${BUILD_NUMBER}"
+                 sh "docker tag vote dvopsimages.azurecr.io/app/vote:${BUILD_NUMBER}"
                }
             }
         }
@@ -27,7 +27,7 @@ pipeline {
                  sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID' 
                  sh 'az acr login --name dvopsimages'
                  sh "cd ${WORKSPACE}/src/worker; docker build -t worker ."
-                 sh "docker tag result dvopsimages.azurecr.io/app/worker:${BUILD_NUMBER}"
+                 sh "docker tag worker dvopsimages.azurecr.io/app/worker:${BUILD_NUMBER}"
                }
             }
         }
